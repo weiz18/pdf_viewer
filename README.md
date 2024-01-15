@@ -1,4 +1,4 @@
-Compacitor running guide here 
+Capacitor running guide here 
 1. https://capacitorjs.com/docs/getting-started
 
 Update app.component.ts
