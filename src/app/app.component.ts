@@ -24,8 +24,13 @@ export class AppComponent implements AfterViewInit {
 
     WebViewer({
       path: '../lib',
-      initialDoc: '../files/webviewer-demo-annotated.pdf',
-      licenseKey: 'your_license_key'  // sign up to get a free trial key at https://dev.apryse.com
+      licenseKey: 'key',
+      enableAnnotations: false,
+      isReadOnly: true,
+      fullAPI: false,
+      webviewerServerURL: 'url',
+      disabledElements: ['menuButton', 'viewControlsButton'],
+      disableMultiViewerComparison: true
     }, this.viewer.nativeElement).then(instance => {
       this.wvInstance = instance;
 
@@ -38,6 +43,15 @@ export class AppComponent implements AfterViewInit {
       documentViewer.addEventListener('annotationsLoaded', () => {
         console.log('annotations loaded');
       });
+
+      instance.UI.loadDocument('doc_url', {
+        officeOptions: {
+          formatOptions: {
+            excelDefaultCellBorderWidth: 1
+          }
+        }
+      });
+
 
       documentViewer.addEventListener('documentLoaded', () => {
         this.documentLoaded$.next();
